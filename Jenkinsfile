@@ -34,12 +34,12 @@ pipeline
      }
      stage('Push Docker Image'){
          steps{
-            sh "docker push -t ${DOCKER_HUB_USER}${IMAGE_NAME}:latest"
+            sh "docker push ${DOCKER_HUB_USER}${IMAGE_NAME}:latest"
          }
      }
      post{
         always{
-            sh 'docker logout ghcr.io'
+            sh 'docker logout'
         }
      } 
       
@@ -47,5 +47,6 @@ pipeline
 
 
 }
+
 
 
