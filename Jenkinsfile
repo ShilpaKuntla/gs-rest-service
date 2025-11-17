@@ -1,6 +1,6 @@
-pipeline{
+pipeline  {
    agent any
-   environment{
+   environment {
          DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds)'
          DOCKER_HUB_USER = 'shilpakuntla'
          IMAGE_NAME = 'myapp' 
@@ -47,6 +47,7 @@ pipeline{
 
 
 }
+
 
 
 
