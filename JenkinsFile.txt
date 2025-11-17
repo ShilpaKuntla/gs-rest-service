@@ -3,10 +3,15 @@ pipeline
    agent any
    stages
   {
+      environment{
+         DOCKERHUB_CREDENTIALS = 'dockerhub-creds'
+         DOCKER_HUB_USER = ''
+         IMAGE_NAME = 'myapp' 
+      } 
       stage('Clone Repository'){
           steps{
-             git branch: 'main',
-                 url:  
+             git branch: 'practice',
+                 url:  'https://github.com/ShilpaKuntla/gs-rest-service'
           }
       }
      stage('Build Project'){
@@ -16,17 +21,17 @@ pipeline
      }  
      stage('Build Docker Image'){
          steps{
-            sh "docker build -t ${ImageName} ."
+            sh "docker build -t ${DOCKER_HUB_USER}${IMAGE_NAME}:latest ."
          }
      }
-     stage('Login to docker hub'){
+     stage('Login to Docker Hub'){
          steps{
             sh "docker build -t ${ImageName} ."
          }
      }
      stage('Push Docker Image'){
          steps{
-            sh "docker build -t ${ImageName} ."
+            sh "docker push -t ${DOCKER_HUB_USER}${IMAGE_NAME}:latest"
          }
      }
      post{
@@ -36,5 +41,6 @@ pipeline
      } 
       
   }
+
 
 }
