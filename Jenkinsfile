@@ -21,20 +21,20 @@ pipeline
      }  
      stage('Build Docker Image'){
          steps{
-            sh "docker build -t ${DOCKER_HUB_USER}${IMAGE_NAME}:latest ."
+            sh "docker build -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest ."
          }
      }
      stage('Login to Docker Hub'){
          steps{
             sh """
-               echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR}
+               echo "${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR}"
                --password -stdin
             """
          }
      }
      stage('Push Docker Image'){
          steps{
-            sh "docker push ${DOCKER_HUB_USER}${IMAGE_NAME}:latest"
+            sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
          }
      }
      post{
@@ -47,6 +47,7 @@ pipeline
 
 
 }
+
 
 
 
