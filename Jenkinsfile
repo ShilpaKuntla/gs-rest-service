@@ -1,13 +1,14 @@
 pipeline
 {
    agent any
-   stages
-  {
-      environment{
+    environment{
          DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds)'
          DOCKER_HUB_USER = 'shilpakuntla'
          IMAGE_NAME = 'myapp' 
       } 
+   stages
+  {
+     
       stage('Clone Repository'){
           steps{
              git branch: 'practice',
@@ -47,6 +48,7 @@ pipeline
 
 
 }
+
 
 
 
