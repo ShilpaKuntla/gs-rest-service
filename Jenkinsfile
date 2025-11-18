@@ -35,14 +35,15 @@ pipeline  {
             sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
          }
      }
+
+   } 
      post {
         always {
             sh 'docker logout'
         }
-     } 
-      
-  }
+     }   
 }
+
 
 
 
