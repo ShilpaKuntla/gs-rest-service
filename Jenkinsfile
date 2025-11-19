@@ -13,7 +13,9 @@ pipeline  {
       }
      stage('Build Project') {
          steps {
-            sh "mvn clean package -DskipTests"
+            dir('complete') {
+               sh "mvn clean package -DskipTests"
+            }   
          }
      }  
      stage('Build Docker Image') {
@@ -39,6 +41,7 @@ pipeline  {
    } 
     
 }
+
 
 
 
