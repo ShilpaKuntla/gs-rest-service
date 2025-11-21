@@ -14,7 +14,7 @@ pipeline  {
      stage('Build Project') {
          steps {
             dir('complete') {
-               sh "mvn clean package -DskipTests"
+               sh " /usr/bin/mvn clean package -DskipTests"
             }   
          }
      }  
@@ -41,6 +41,7 @@ pipeline  {
    } 
     
 }
+
 
 
 
