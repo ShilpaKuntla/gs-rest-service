@@ -20,7 +20,7 @@ pipeline  {
      }  
      stage('Build Docker Image') {
          steps {
-            sh "docker build -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest ."
+            sh "docker build -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:${BUILD_NUMBER} ."
          }
      }
      stage('Login to Docker Hub') {
@@ -56,6 +56,7 @@ pipeline  {
    } 
     
 }
+
 
 
 
