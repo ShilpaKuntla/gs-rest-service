@@ -32,15 +32,23 @@ pipeline  {
             } 
          }
      }
-     stage('Push Docker Image') {
+     stage('Push Image to Docker Hub') {
          steps {
-            sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
+            sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:${BUILD_NUMBER}"
          }
      }
-
+     stage('Update Kubernetes Deployment Image') {
+         steps {
+            sh """
+               sed -i 's|image:.*|
+               image: ${DOCKER_HUB_USER}/${IMAGE_NAME}:${BUILD_NUMBER} |g' k8s/deployment.yaml
+               """
+         }
+     }
    } 
     
 }
+
 
 
 
