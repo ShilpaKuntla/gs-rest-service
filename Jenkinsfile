@@ -45,9 +45,18 @@ pipeline  {
                """
          }
      }
+     stage('Deploy to minikube') {
+         steps {
+            sh """
+               kubectl apply -f k8s/deployment.yaml
+               kubectl rollout restart deployment myapp-deployment
+              """
+         } 
+     }  
    } 
     
 }
+
 
 
 
